@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import AppRouter from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
 import { addExpense } from "./actions/expensesAction";
-import { setTextFilter } from "./actions/filtersActions";
 import getVisibleExpenses from "./selectors/expenses";
 
 const store = configureStore();
@@ -14,17 +13,20 @@ const store = configureStore();
 store.dispatch(
   addExpense({
     description: "Water bill",
-    amount: 2000,
-    note: "fuck government",
-    createdAt: Date.now(),
+    amount: 4500,
   })
 );
 store.dispatch(
   addExpense({
     description: "Gas bill",
-    amount: 3000,
-    note: "fuck government",
-    createdAt: Date.now(),
+    createdAt: 1000,
+  })
+);
+
+store.dispatch(
+  addExpense({
+    description: "Rent",
+    amount: 109500,
   })
 );
 
