@@ -11,7 +11,7 @@ const CreateExpense = ({ history, dispatch }) => {
 
   return (
     <div>
-      <h1>Add Expense</h1>
+      <h2>Add Expense</h2>
       <ExpenseForm onSubmit={onSubmit} />
     </div>
   );
