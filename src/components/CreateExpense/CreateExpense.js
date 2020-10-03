@@ -4,14 +4,15 @@ import ExpenseForm from "../ExpenseForm/ExpenseForm";
 import { addExpense } from "../../actions/expensesAction";
 
 const CreateExpense = ({ history, dispatch }) => {
-  const onExpenseCreate = expense => {
+  const onSubmit = expense => {
     dispatch(addExpense(expense));
     history.push("/");
   };
+
   return (
     <div>
       <h1>Add Expense</h1>
-      <ExpenseForm onExpenseCreate={onExpenseCreate} />
+      <ExpenseForm onSubmit={onSubmit} />
     </div>
   );
 };

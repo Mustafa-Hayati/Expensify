@@ -6,7 +6,7 @@ import selectExpenses from "./../../selectors/expenses";
 const ExpenseList = ({ expenses }) => {
   return (
     <div>
-      <h2>List</h2>
+      <h2>Expenses List</h2>
       {expenses.map(exp => {
         return <ExpenseListItem key={exp.id} expense={{ ...exp }} />;
       })}

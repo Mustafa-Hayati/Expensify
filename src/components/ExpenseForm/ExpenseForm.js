@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import moment from "moment";
 import "react-dates/lib/css/_datepicker.css";
+import React, { useState } from "react";
 import { SingleDatePicker } from "react-dates";
 import "react-dates/initialize";
+import moment from "moment";
 
-const ExpenseForm = ({ onExpenseCreate, history }) => {
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [note, setNote] = useState("");
-  const [createdAt, setCreatedAt] = useState(moment());
+const ExpenseForm = ({ onSubmit, expense }) => {
+  const [description, setDescription] = useState(
+    expense ? expense.description : ""
+  );
+  const [amount, setAmount] = useState(
+    expense ? (expense.amount / 100).toString() : ""
+  );
+  const [note, setNote] = useState(expense ? expense.note : "");
+  const [createdAt, setCreatedAt] = useState(
+    expense ? moment(expense.createdAt) : moment()
+  );
   const [calendarFocused, setCalendarFocused] = useState(false);
   const [error, setError] = useState("");
-
-  // const onInputChange = e => {
-  //   const name = e.target.name;
-  //   eval(`set${name}(e.target.value)`);
-  // };
 
   const onFormSubmit = e => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const ExpenseForm = ({ onExpenseCreate, history }) => {
       setError("Please provide a description and amount");
     } else {
       setError("");
-      onExpenseCreate({
+      onSubmit({
         description,
         amount: parseFloat(amount, 10) * 100,
         note,
@@ -35,14 +36,12 @@ const ExpenseForm = ({ onExpenseCreate, history }) => {
 
   const onDescriptionChange = e => {
     setDescription(e.target.value);
-    setError("");
   };
 
   const onAmountChange = e => {
     const amount = e.target.value;
     if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       setAmount(amount);
-      setError("");
     }
   };
 
@@ -62,7 +61,6 @@ const ExpenseForm = ({ onExpenseCreate, history }) => {
       <form onSubmit={onFormSubmit}>
         <input
           onChange={onDescriptionChange}
-          // onChange={onInputChange}
           name="Description"
           placeholder="Description"
           autoFocus
@@ -87,7 +85,7 @@ const ExpenseForm = ({ onExpenseCreate, history }) => {
           value={note}
           placeholder="Add a note for your expense (optional)"
         ></textarea>
-        <button>Add Expense</button>
+        <button>{expense ? "Edit" : "Add"} Expense</button>
       </form>
     </div>
   );
