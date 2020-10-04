@@ -5,7 +5,7 @@ import {
   setStartDate,
   sortByAmount,
   sortByDate,
-} from "../actions/filtersActions";
+} from "../../actions/filtersActions";
 
 test("should generate set start date action object", () => {
   const action = setStartDate(moment(0));

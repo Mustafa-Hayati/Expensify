@@ -2,7 +2,7 @@ import {
   addExpense,
   removeExpense,
   editExpense,
-} from "../actions/expensesAction";
+} from "../../actions/expensesAction";
 
 test("should setup remove expense action object", () => {
   const action = removeExpense({ id: 13 });
