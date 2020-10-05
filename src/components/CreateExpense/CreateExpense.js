@@ -3,24 +3,24 @@ import { connect } from "react-redux";
 import ExpenseForm from "../ExpenseForm/ExpenseForm";
 import { addExpense } from "../../actions/expensesAction";
 
-const CreateExpense = ({ history, onSubmit }) => {
-  const onExpenseCreate = expense => {
+const CreateExpense = ({ history, addExpense }) => {
+  const onSubmit = expense => {
     // dispatch(addExpense(expense));
-    onSubmit(expense);
+    addExpense(expense);
     history.push("/");
   };
 
   return (
     <div>
       <h2>Add Expense</h2>
-      <ExpenseForm onSubmit={onExpenseCreate} />
+      <ExpenseForm onSubmit={onSubmit} />
     </div>
   );
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmit: expense => dispatch(addExpense(expense)),
+    addExpense: expense => dispatch(addExpense(expense)),
   };
 };
 
