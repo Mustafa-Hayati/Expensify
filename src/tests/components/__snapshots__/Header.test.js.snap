@@ -18,11 +18,5 @@ exports[`should render Header correctly 1`] = `
   >
     CreateExpense
   </NavLink>
-  <NavLink
-    activeClassName="header__active-link"
-    to="/help"
-  >
-    Help
-  </NavLink>
 </header>
 `;

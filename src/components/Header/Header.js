@@ -12,9 +12,6 @@ const Header = () => {
       <NavLink to="/create" activeClassName="header__active-link">
         CreateExpense
       </NavLink>
-      <NavLink to="/help" activeClassName="header__active-link">
-        Help
-      </NavLink>
     </header>
   );
 };
