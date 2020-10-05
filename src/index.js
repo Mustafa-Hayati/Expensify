@@ -1,4 +1,5 @@
 import "normalize.css/normalize.css";
+import "react-dates/initialize";
 import "./base_styles/index.scss";
 import React from "react";
 import ReactDOM from "react-dom";

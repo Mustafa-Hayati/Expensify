@@ -1,7 +1,6 @@
 import "react-dates/lib/css/_datepicker.css";
 import React, { useState } from "react";
 import { SingleDatePicker } from "react-dates";
-import "react-dates/initialize";
 import moment from "moment";
 
 const ExpenseForm = ({ onSubmit, expense }) => {
