@@ -9,22 +9,32 @@ import {
   setEndDate,
 } from "../../actions/filtersActions";
 
-const ExpenseListFilters = ({ filters, dispatch }) => {
+const ExpenseListFilters = ({
+  filters,
+  setTextFilter,
+  sortByAmount,
+  sortByDate,
+  setStartDate,
+  setEndDate,
+}) => {
   const [calendarFocused, setCalendarFocused] = useState(null);
 
   const onInputChange = e => {
-    dispatch(setTextFilter(e.target.value));
+    // dispatch(setTextFilter(e.target.value));
+    setTextFilter(e.target.value);
   };
 
-  const onSelectionChange = e => {
+  const onSortChange = e => {
     const actionGenerator =
       e.target.value === "date" ? sortByDate : sortByAmount;
-    dispatch(actionGenerator());
+    actionGenerator();
   };
 
   const onDatesChange = ({ startDate, endDate }) => {
-    dispatch(setStartDate(startDate));
-    dispatch(setEndDate(endDate));
+    // dispatch(setStartDate(startDate));
+    setStartDate(startDate);
+    // dispatch(setEndDate(endDate));
+    setEndDate(endDate);
   };
 
   const onFocusChange = calendarFocused => {
@@ -34,7 +44,7 @@ const ExpenseListFilters = ({ filters, dispatch }) => {
   return (
     <div>
       <input type="text" value={filters.text} onChange={onInputChange} />
-      <select onChange={onSelectionChange} value={filters.sortBy}>
+      <select onChange={onSortChange} value={filters.sortBy}>
         <option value="date">Date</option>
         <option value="amount">Amount</option>
       </select>
@@ -60,4 +70,14 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ExpenseListFilters);
+const mapDispatchToProps = dispatch => {
+  return {
+    setTextFilter: text => dispatch(setTextFilter(text)),
+    sortByDate: () => dispatch(sortByDate()),
+    sortByAmount: () => dispatch(sortByAmount()),
+    setStartDate: startDate => dispatch(setStartDate(startDate)),
+    setEndDate: endDate => dispatch(setEndDate(endDate)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
