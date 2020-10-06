@@ -20,7 +20,6 @@ const ExpenseListFilters = ({
   const [calendarFocused, setCalendarFocused] = useState(null);
 
   const onInputChange = e => {
-    // dispatch(setTextFilter(e.target.value));
     setTextFilter(e.target.value);
   };
 
@@ -31,9 +30,7 @@ const ExpenseListFilters = ({
   };
 
   const onDatesChange = ({ startDate, endDate }) => {
-    // dispatch(setStartDate(startDate));
     setStartDate(startDate);
-    // dispatch(setEndDate(endDate));
     setEndDate(endDate);
   };
 

@@ -1,22 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
 import ExpenseForm from "../ExpenseForm/ExpenseForm";
-import { editExpense, removeExpense } from "../../actions/expensesAction";
+import {
+  startEditExpense,
+  startRemoveExpense,
+} from "../../actions/expensesAction";
 
-const EditExpense = ({ history, expense, editExpense, removeExpense }) => {
+const EditExpense = ({
+  history,
+  expense,
+  startEditExpense,
+  startRemoveExpense,
+}) => {
   if (!expense) {
     history.push("/");
   }
 
   const onSubmit = update => {
-    // dispatch(editExpense(expense.id, update));
-    editExpense(expense.id, update);
+    startEditExpense(expense.id, update);
     history.push("/");
   };
 
   const onRemoveClick = () => {
-    // dispatch(removeExpense({ id: expense.id }));
-    removeExpense(expense.id);
+    startRemoveExpense(expense.id);
     history.push("/");
   };
 
@@ -36,8 +42,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editExpense: (id, update) => dispatch(editExpense(id, update)),
-    removeExpense: id => dispatch(removeExpense({ id })),
+    startEditExpense: (id, update) => dispatch(startEditExpense(id, update)),
+    startRemoveExpense: id => dispatch(startRemoveExpense({ id })),
   };
 };
 

@@ -5,7 +5,6 @@ import { startAddExpense } from "../../actions/expensesAction";
 
 const CreateExpense = ({ history, startAddExpense }) => {
   const onSubmit = expense => {
-    // dispatch(addExpense(expense));
     startAddExpense(expense);
     history.push("/");
   };

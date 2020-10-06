@@ -6,7 +6,7 @@ const addExpense = expense => ({
   expense,
 });
 
-export const startAddExpense = (expenseData = {}) => {
+const startAddExpense = (expenseData = {}) => {
   return dispatch => {
     const {
       description = "",
@@ -40,6 +40,20 @@ const removeExpense = ({ id } = {}) => ({
   id,
 });
 
+const startRemoveExpense = ({ id } = {}) => {
+  return dispatch => {
+    return database
+      .ref(`expenses/${id}`)
+      .remove()
+      .then(() => {
+        dispatch(removeExpense({ id }));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
 // EDIT_EXPENSE
 const editExpense = (id, updates) => ({
   type: "EDIT_EXPENSE",
@@ -47,4 +61,55 @@ const editExpense = (id, updates) => ({
   updates,
 });
 
-export { addExpense, removeExpense, editExpense };
+const startEditExpense = (id, updates) => {
+  return dispatch => {
+    return database
+      .ref(`expenses/${id}`)
+      .update(updates)
+      .then(() => {
+        dispatch(editExpense(id, updates));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
+// SET_EXPENSES
+const setExpenses = expenses => {
+  return {
+    type: "SET_EXPENSES",
+    expenses,
+  };
+};
+
+const startSetExpenses = () => {
+  return dispatch => {
+    return database
+      .ref(`expenses`)
+      .once("value")
+      .then(snapshot => {
+        const expenses = [];
+
+        snapshot.forEach(childSnapshot => {
+          expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val(),
+          });
+        });
+
+        dispatch(setExpenses(expenses));
+      });
+  };
+};
+
+export {
+  addExpense,
+  startAddExpense,
+  removeExpense,
+  startRemoveExpense,
+  editExpense,
+  startEditExpense,
+  setExpenses,
+  startSetExpenses,
+};
