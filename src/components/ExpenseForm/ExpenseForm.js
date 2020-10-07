@@ -55,38 +55,41 @@ const ExpenseForm = ({ onSubmit, expense }) => {
   };
 
   return (
-    <div>
-      {error && <p>{error}</p>}
-      <form onSubmit={onFormSubmit}>
-        <input
-          onChange={onDescriptionChange}
-          name="Description"
-          placeholder="Description"
-          autoFocus
-          value={description}
-        />
-        <input
-          onChange={onAmountChange}
-          type="number"
-          placeholder="Amount"
-          value={amount}
-        />
-        <SingleDatePicker
-          date={createdAt}
-          onDateChange={onDateChange}
-          focused={calendarFocused}
-          onFocusChange={onFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
-        <textarea
-          onChange={e => setNote(e.target.value)}
-          value={note}
-          placeholder="Add a note for your expense (optional)"
-        ></textarea>
-        <button>{expense ? "Edit" : "Add"} Expense</button>
-      </form>
-    </div>
+    <form className="form" onSubmit={onFormSubmit}>
+      {error && <p className="form__error">{error}</p>}
+      <input
+        className="text-input"
+        onChange={onDescriptionChange}
+        name="Description"
+        placeholder="Description"
+        autoFocus
+        value={description}
+      />
+      <input
+        className="text-input"
+        onChange={onAmountChange}
+        type="number"
+        placeholder="Amount"
+        value={amount}
+      />
+      <SingleDatePicker
+        date={createdAt}
+        onDateChange={onDateChange}
+        focused={calendarFocused}
+        onFocusChange={onFocusChange}
+        numberOfMonths={1}
+        isOutsideRange={() => false}
+      />
+      <textarea
+        className="textarea"
+        onChange={e => setNote(e.target.value)}
+        value={note}
+        placeholder="Add a note for your expense (optional)"
+      ></textarea>
+      <div>
+        <button className="button">{expense ? "Edit" : "Add"} Expense</button>
+      </div>
+    </form>
   );
 };
 

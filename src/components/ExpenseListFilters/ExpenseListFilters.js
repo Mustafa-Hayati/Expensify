@@ -39,24 +39,42 @@ const ExpenseListFilters = ({
   };
 
   return (
-    <div>
-      <input type="text" value={filters.text} onChange={onInputChange} />
-      <select onChange={onSortChange} value={filters.sortBy}>
-        <option value="date">Date</option>
-        <option value="amount">Amount</option>
-      </select>
-      <DateRangePicker
-        startDate={filters.startDate}
-        endDate={filters.endDate}
-        onDatesChange={onDatesChange}
-        focusedInput={calendarFocused}
-        onFocusChange={onFocusChange}
-        numberOfMonths={1}
-        isOutsideRange={() => false}
-        showClearDates={true}
-        startDateId="dateRangePicker"
-        endDateId="something"
-      />
+    <div className="content-container">
+      <div className="input-group">
+        <div className="input-group__item">
+          <input
+            type="text"
+            value={filters.text}
+            onChange={onInputChange}
+            className="text-input"
+            placeholder="Search Expenses"
+          />
+        </div>
+        <div className="input-group__item">
+          <select
+            className="select"
+            onChange={onSortChange}
+            value={filters.sortBy}
+          >
+            <option value="date">Date</option>
+            <option value="amount">Amount</option>
+          </select>
+        </div>
+        <div className="input-group__item">
+          <DateRangePicker
+            startDate={filters.startDate}
+            endDate={filters.endDate}
+            onDatesChange={onDatesChange}
+            focusedInput={calendarFocused}
+            onFocusChange={onFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+            showClearDates={true}
+            startDateId="dateRangePicker"
+            endDateId="something"
+          />
+        </div>
+      </div>
     </div>
   );
 };

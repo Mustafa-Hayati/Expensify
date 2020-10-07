@@ -1,0 +1,22 @@
+.header {
+  background: $dark-blue;
+
+  &__content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: $s-size 0;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__title {
+    color: white;
+    text-decoration: none;
+    h1 {
+      margin: 0;
+    }
+  }
+}

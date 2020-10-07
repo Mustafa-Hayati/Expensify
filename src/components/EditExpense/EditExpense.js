@@ -28,8 +28,19 @@ const EditExpense = ({
 
   return (
     <div>
-      <ExpenseForm onSubmit={onSubmit} expense={expense} />
-      {expense && <button onClick={onRemoveClick}>Remove</button>}
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Edit Expense</h1>
+        </div>
+      </div>
+      <div className="content-container">
+        <ExpenseForm onSubmit={onSubmit} expense={expense} />
+        {expense && (
+          <button className="button button--secondary" onClick={onRemoveClick}>
+            Remove Expense
+          </button>
+        )}
+      </div>
     </div>
   );
 };

@@ -10,10 +10,11 @@ import { startSetExpenses } from "./actions/expensesAction";
 import "react-dates/initialize";
 import { firebase } from "./firebase/firebase";
 import { login, logout } from "./actions/authActions";
+import LoadingPage from "./components/LoadingPage/LoadingPage";
 
 const store = configureStore();
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById("root"));
+ReactDOM.render(<LoadingPage />, document.getElementById("root"));
 
 const jsx = (
   <Provider store={store}>
