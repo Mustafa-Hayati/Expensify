@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
+import createHistory from "history/createBrowserHistory";
 import ExpenseDashboardPage from "../components/ExpenseDashboardPage/ExpenseDashboardPage";
 import Header from "../components/Header/Header";
 import CreateExpense from "./../components/CreateExpense/CreateExpense";
@@ -8,9 +9,11 @@ import NotFound from "./../components/NotFound/NotFound";
 import EditExpense from "../components/EditExpense/EditExpense";
 import LoginPage from "../components/LoginPage/LoginPage";
 
+export const history = createHistory();
+
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Fragment>
         <Header />
         <Switch>
@@ -22,7 +25,7 @@ const AppRouter = () => {
           <Route component={NotFound} />
         </Switch>
       </Fragment>
-    </BrowserRouter>
+    </Router>
   );
 };
 
