@@ -6,9 +6,9 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import AppRouter from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
-import "./firebase/firebase";
 import { startSetExpenses } from "./actions/expensesAction";
 import "react-dates/initialize";
+import { firebase } from "./firebase/firebase";
 
 const store = configureStore();
 
@@ -21,4 +21,12 @@ store.dispatch(startSetExpenses()).then(() => {
     </Provider>,
     document.getElementById("root")
   );
+});
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    console.log("login");
+  } else {
+    console.log("log out");
+  }
 });

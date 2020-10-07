@@ -1,7 +1,4 @@
 import * as firebase from "firebase";
-// import dotenv from "dotenv";
-// import default from './../selectors/expenses';
-// dotenv.config();
 
 // Use a vpn
 
@@ -19,8 +16,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, db as default };
+export { firebase, googleAuthProvider, db as default };
 
 // db.ref()
 //   .set({
