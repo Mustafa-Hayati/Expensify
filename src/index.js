@@ -9,6 +9,7 @@ import configureStore from "./store/configureStore";
 import { startSetExpenses } from "./actions/expensesAction";
 import "react-dates/initialize";
 import { firebase } from "./firebase/firebase";
+import { login, logout } from "./actions/authActions";
 
 const store = configureStore();
 
@@ -30,6 +31,7 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
+    store.dispatch(login(user.uid));
     store.dispatch(startSetExpenses()).then(() => {
       renderApp();
       if (history.location.pathname === "/") {
@@ -37,6 +39,7 @@ firebase.auth().onAuthStateChanged(user => {
       }
     });
   } else {
+    store.dispatch(logout());
     renderApp();
     history.push("/");
   }
