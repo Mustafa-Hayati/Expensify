@@ -8,7 +8,7 @@ const Header = ({ startLogout }) => {
   return (
     <header>
       <h1>Expensify</h1>
-      <NavLink exact to="/" activeClassName="header__active-link">
+      <NavLink to="/dashboard" activeClassName="header__active-link">
         Dashboard
       </NavLink>
       <NavLink to="/create" activeClassName="header__active-link">
